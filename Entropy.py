@@ -114,5 +114,12 @@ def make_pos_neg_keywords_alpha(alpha, pos_entropies, neg_entropies, general_dic
             neg_dict.append(word)
     return pos_dict, neg_dict
 
+# User should use:
+# general_dictionary(corpus)
+# entropy_list(general_dict, documents)
+# SumN_list(general_dict, documents)
+# max_entropy(corpus)
+# make_pos_neg_keywords_alpha(alpha, pos_entropies, neg_entropies, general_dict)
+
 if __name__ == '__main__':
     pass
