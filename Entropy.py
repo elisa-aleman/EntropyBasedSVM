@@ -23,11 +23,12 @@ def Dictionary(tokenized):
     return dictionary
 
 # Input: corpus --> list of space separated documents of ALL categories
+# corpus --> list of strings ['sentence is sentence', 'sentence 2']
 def general_dictionary(corpus):
     tokenized = Tokenize(corpus)
     dictionary = Dictionary(tokenized)
-    general_dictionary = sorted([word for word in dictionary.values()])
-    return general_dictionary
+    general_dict = sorted([word for word in dictionary.values()])
+    return general_dict
 
 # For a particular word in either category (positive or negative, etc.)
 # The following methods should be used in a list of documents of ONLY positive or ONLY negative documents
@@ -38,9 +39,9 @@ def getNs(word, documents):
     for sentence in documents:
         N = sentence.count(word)
         Ns.append(N)
-    return N
+    return Ns
 
-def SumN(word, documents):
+def get_SumN(word, documents):
     SumN = sum(getNs(word,documents))
     return SumN
 
@@ -74,20 +75,20 @@ def entropy_alt2(Ps):
     ent = scipy.special.entr(PyPs)
     return ent
 
-def SumN_list(general_dictionary, documents):
+def SumN_list(general_dict, documents):
     SumN_list = []
-    for word in general_dictionary:
-        SumN = SumN(word,documents)
+    for word in general_dict:
+        SumN = get_SumN(word,documents)
         SumN_list.append(SumN)
     return SumN_list
 
-def entropy_list(general_dictionary, documents):
+def entropy_list(general_dict, documents):
     entropy_list=[]
-    for word in general_dictionary:
+    for word in general_dict:
         Ns = getNs(word, documents)
         SumN = sum(Ns)
         Ps = P_list(Ns, SumN)
-        entropy = entropy(Ps)
+        entropy = entropy_alt1(Ps)
         entropy_list.append(entropy)
     return entropy_list
 
@@ -96,24 +97,21 @@ def max_entropy(corpus):
     Hmax = numpy.log2(n)
     return Hmax
 
-def make_pos_neg_keywords_alpha(alpha, pos_entropies, neg_entropies, pos_sums, neg_sums, general_dictionary):
+# pos or neg documents --> list of strings ['sentence is sentence', 'sentence 2']
+# pos_entropies = [pe/max_entropy(positive_documents) for pe in entropy_list(general_dict, positive_documents)]
+# pos_entropies = [ne/max_entropy(negative_documents) for ne in entropy_list(general_dict, negative_documents)]
+def make_pos_neg_keywords_alpha(alpha, pos_entropies, neg_entropies, general_dict):
     pos_dict = []
     neg_dict = []
     maxnum = len(pos_entropies)
-    for i in xrange(maxnum):
-        word = general_dictionary[i]
+    for i in range(maxnum):
+        word = general_dict[i]
         Hpj = pos_entropies[i]
         Hnj = neg_entropies[i]
-        Spj = pos_sums[i]
-        Snj = neg_sums[i]
         if (Hpj>(alpha*Hnj)):
             pos_dict.append(word)
         elif (Hnj>(alpha*Hpj)):
             neg_dict.append(word)
-        elif Spj==0 and Snj>0:
-            neg_dict.append(word)
-        elif Snj==0 and Spj>0:
-            pos_dict.append(word)
     return pos_dict, neg_dict
 
 if __name__ == '__main__':
