@@ -5,10 +5,12 @@ import scipy
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy 
 
-def Vectorize(sentences, dictionary):
+# sentences = [["string", 1],["string", 0]]
+# keyword_list = ['keyword', 'keyword', 'keyword']
+def Vectorize(sentences, keyword_list):
     # sentences: ["text",1 or 0] 1: positive, 0: negative
     vectorizer = CountVectorizer(min_df=1, token_pattern='(?u)\\b\\w+\\b')
-    IM = vectorizer.fit_transform(dictionary)
+    IM = vectorizer.fit_transform(keyword_list)
     # Method 1
     X_list = []
     y_list = []
@@ -20,7 +22,7 @@ def Vectorize(sentences, dictionary):
     y = numpy.array(y_list)
     return X, y
 
-def SVMKFolds(k, sentences, dictionary, kernel = 'linear', C = 1.0, gamma = 0.001, times = 1):
+def SVMKFolds(k, sentences, keyword_list, kernel = 'linear', C = 1.0, gamma = 0.001, times = 1):
     precisions = []
     recalls = []
     accuracies = []
@@ -30,7 +32,7 @@ def SVMKFolds(k, sentences, dictionary, kernel = 'linear', C = 1.0, gamma = 0.00
     counts = [{"CP":0, "TP": 0, "TN":0, "IP":0, "FP":0, "FN":0} for t in range(k*times)]
     for t in range(k*times):
         numpy.random.shuffle(sentences)
-        X, y = Vectorize(sentences, dictionary)
+        X, y = Vectorize(sentences, keyword_list)
         #Define classifier
         clf = svm.SVC(kernel = kernel, C = C, gamma = gamma)
         clf.fit(X[:-testsize],y[:-testsize])
