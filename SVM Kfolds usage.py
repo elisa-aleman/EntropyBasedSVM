@@ -15,5 +15,5 @@ sentences = [
 	['sweet sweet sweet apple apple apple yes yes yes', 1],
 	['i like sweet apple with red and green', 1]
 ]
-dictionary = ['brown','red','apple','smell','green','juicy', 'tasty','dry','sweet','yes','taste','love']
-SVMKFolds(k, sentences, dictionary, kernel = 'linear', C = 1.0, gamma = 0.001, times = 1)
+keyword_list = ['brown','red','apple','smell','green','juicy', 'tasty','dry','sweet','yes','taste','love']
+SVMKFolds(k, sentences, keyword_list, kernel = 'linear', C = 1.0, gamma = 0.001, times = 1)
