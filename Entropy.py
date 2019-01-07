@@ -5,6 +5,10 @@ import scipy.stats
 import scipy.special
 import gensim
 
+def LemmatizeEnglish(content):
+    lem = ' '.join([i.decode('utf-8').split('/')[0] for i in gensim.utils.lemmatize(content)])
+    return lem
+
 def Tokenize(corpus):
     tokenized = [i.split() for i in corpus]
     counts = dict()
