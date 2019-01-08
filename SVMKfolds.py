@@ -92,7 +92,7 @@ def SVM_weights(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
     clf = svm.SVC(kernel = kernel, C = C, gamma = gamma)
     clf.fit(x,y)
     weights = clf.coef_.tolist()[0]
-    influences = zip(feature_names, weights)
+    influences = list(zip(feature_names, weights))
     return influences
 
 if __name__ == "__main__":
