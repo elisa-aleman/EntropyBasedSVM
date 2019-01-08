@@ -22,6 +22,14 @@ def Vectorize(sentences, keyword_list):
     y = numpy.array(y_list)
     return X, y
 
+def Predict(clf, sentence, keyword_list):
+    vectorizer = CountVectorizer(min_df=1, token_pattern='(?u)\\b\\w+\\b') #All words included
+    IM = vectorizer.fit_transform(keyword_list)
+    pre_vector = vectorizer.transform([sentence]).toarray().tolist()
+    vector = numpy.array(pre_vector[0])
+    predicted = clf.predict(vector.reshape(1,-1))[0]
+    return predicted
+
 def SVMKFolds(k, sentences, keyword_list, kernel = 'linear', C = 1.0, gamma = 0.001, times = 1):
     precisions = []
     recalls = []
@@ -84,7 +92,13 @@ def SVMKFolds(k, sentences, keyword_list, kernel = 'linear', C = 1.0, gamma = 0.
     results = [[avpr, stpr, precisions], [avre, stre, recalls], [avac, stac, accuracies], [avf1, stf1, f1s], counts]
     return results
 
-def SVM_weights(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
+def Feature_Names(keyword_list):
+    vectorizer = CountVectorizer(min_df=1, token_pattern='(?u)\\b\\w+\\b')
+    IM = vectorizer.fit_transform(keyword_list)
+    features = vectorizer.get_feature_names()
+    return features
+
+def SVM_weights_untrained(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
     if type(x) == type([]):
         x = numpy.array(x)
     if type(y) == type([]):
@@ -92,6 +106,12 @@ def SVM_weights(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
     clf = svm.SVC(kernel = kernel, C = C, gamma = gamma)
     clf.fit(x,y)
     weights = clf.coef_.tolist()[0]
+    influences = list(zip(feature_names, weights))
+    return influences
+
+def SVM_weights_trained(clf,keyword_list):
+    weights = clf.coef_.tolist()[0]
+    feature_names = Feature_Names(keyword_list)
     influences = list(zip(feature_names, weights))
     return influences
 
