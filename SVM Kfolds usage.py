@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-from SVMKfolds import *
+from SVM_Methods import *
 from BagOfWords import *
 
 k = 4
