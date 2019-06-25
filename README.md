@@ -7,4 +7,10 @@ I use entropy in positive and negative emotional classification via SVM in many 
 
 * __Entropy:__ I use scikit and gensim to calculate the entropy of words in positive and negative documents, so that I can then compare both entropies of the word and know the words that are probabilistically evenly distributed in one category but not in the other, which aids in classification.
 
-* __SVM K-folds:__ I use scikit-learn to write my own K-folds method that returns F1, Accuracy, Precision and Recall. Included methods usually only return Accuracy or F1.
+* __SVM_Methods:__ The methods I use to analyze SVM training results from K-folds cross validation to weight analysis.
+
+* __Model_Metrics:__ I use scikit-learn to write my own K-folds method that returns F1, Accuracy, Precision and Recall. Included methods usually only return Accuracy or F1.
+
+
+
+
