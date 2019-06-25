@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
-from SVM_Methods import *
-from BagOfWords import *
+from libraries.SVM_Methods import *
+from libraries.BagOfWords import *
 
 k = 4
 sentences = [
