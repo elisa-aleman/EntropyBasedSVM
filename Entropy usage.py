@@ -1,8 +1,6 @@
-import os.path
-import sys
-PythonPath = os.path.join("/Volumes/GoogleDrive", "My Drive","Personal/Escuela/技大/野中研究室/Master/python/libraries") 
-sys.path.append(os.path.abspath(PythonPath))
-from Entropy import *
+#-*- coding: utf-8 -*-
+
+from libraries.Entropy import *
 
 # User should use:
 # general_dictionary(corpus)
