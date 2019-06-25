@@ -1,11 +1,7 @@
-####################################
-########## Training Data  ##########
-####################################
+#-*- coding: utf-8 -*-
 
-### Input is "<neutral> word word </neutral> <positive> word word word </positive> <negative> word word word </negative> word ..."
-# Returns a list of sentences in the format ['word word word',1] if positive
-# or ['word word word', 0] if neutral
-# or ['word word word', -1] if negative
+### Input is "word word <positive> word word word </positive> <negative> word word word </negative> word ..."
+# Returns a list of sentences in the format ['word word word',1] if positive,['word word word',0] if neutral and ['word word word', -1] if negative
 def PosiNegaNeutraSentences(comment):
     comment = comment.split()
     # The comment has been reduced to a list of words including the tags
@@ -27,16 +23,16 @@ def PosiNegaNeutraSentences(comment):
             skip = True
         if (current_word == '<negative>'):
             positive = False
-            neutral = False
             negative = True
+            neutral = False
             skip = True
         if (current_word == '</negative>'):
             negative = True
             skip = True
         if (current_word == '<neutral>'):
             positive = False
-            neutral = True
             negative = False
+            neutral = True
             skip = True
         if (current_word == '</neutral>'):
             neutral = True
@@ -50,16 +46,16 @@ def PosiNegaNeutraSentences(comment):
                     att = 1
                     sentence = " ".join(sentence).strip()
                     sentences.append([sentence,att])
-                    positive = False
                 elif negative and not positive and not neutral:
                     att = -1
                     sentence = " ".join(sentence).strip()
                     sentences.append([sentence,att])
-                    negative = False
                 elif neutral and not positive and not negative:
                     att = 0
                     sentence = " ".join(sentence).strip()
                     sentences.append([sentence,att])
-                    neutral = False
                 sentence = []
     return sentences
+
+if __name__ == '__main__':
+    pass
