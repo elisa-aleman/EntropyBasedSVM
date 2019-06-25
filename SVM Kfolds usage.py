@@ -1,8 +1,7 @@
-import os.path
-import sys
-PythonPath = os.path.join("/Volumes/GoogleDrive", "My Drive","Personal/Escuela/技大/野中研究室/Master/python/libraries") 
-sys.path.append(os.path.abspath(PythonPath))
+#-*- coding: utf-8 -*-
+
 from SVMKfolds import *
+from BagOfWords import *
 
 k = 4
 sentences = [
@@ -16,4 +15,11 @@ sentences = [
 	['i like sweet apple with red and green', 1]
 ]
 keyword_list = ['brown','red','apple','smell','green','juicy', 'tasty','dry','sweet','yes','taste','love']
-SVMKFolds(k, sentences, keyword_list, kernel = 'linear', C = 1.0, gamma = 0.001, times = 1)
+
+def SVM_KFolds_sentences(sentences, k, keyword_list, kernel='linear', C=1.0, gamma=0.001):
+    x, y = Vectorize_Bag_of_Words(sentences, keyword_list)
+    results = SVM_Kfolds(x, y, k, kernel=kernel, C=C, gamma=gamma)
+    return results
+
+
+SVM_KFolds_sentences(sentences, k, keyword_list, kernel = 'linear', C = 1.0, gamma = 0.001, times = 1)
