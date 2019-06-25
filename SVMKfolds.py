@@ -3,7 +3,6 @@
 from sklearn import svm
 import scipy
 import numpy
-from libraries.BagOfWords import *
 
 def Predict(clf, sentence, keyword_list):
     vectorizer = CountVectorizer(min_df=1, token_pattern='(?u)\\b\\w+\\b') #All words included
@@ -47,11 +46,6 @@ def SVM_weights(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
     weights = clf.coef_.tolist()[0]
     influences = zip(feature_names, weights)
     return influences
-
-def SVM_KFolds_sentences(sentences, k, keyword_list, kernel='linear', C=1.0, gamma=0.001):
-    x, y = Vectorize_Bag_of_Words(sentences, keyword_list)
-    results = SVM_Kfolds(x, y, k, kernel=kernel, C=C, gamma=gamma)
-    return results
 
 def SVM_weights_untrained(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
     if type(x) == type([]):
