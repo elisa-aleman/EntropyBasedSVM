@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 
 import gensim
+# from gensim.summarization.textcleaner import split_sentences
 
 def LemmatizeEnglish(content):
     lem = ' '.join([i.decode('utf-8').split('/')[0] for i in gensim.utils.lemmatize(content)])
@@ -30,6 +31,10 @@ def general_dictionary(corpus):
     dictionary = Dictionary(tokenized)
     general_dict = sorted([word for word in dictionary.values()])
     return general_dict
+
+# You don't need to import this one, but I put it here for reference
+# def wrapper_split_sentences(text):
+#     split_sentences(text)
     
 if __name__ == '__main__':
     pass
