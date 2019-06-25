@@ -13,7 +13,7 @@ I use entropy in positive and negative emotional classification via SVM in many 
 
 * __Model_Metrics:__ I use scikit-learn to write my own K-folds method that returns F1, Accuracy, Precision and Recall. Included methods usually only return Accuracy or F1.
 
-* __PosiNega__
+* __Posi-Nega-Neutra_Tagged-Sentence-Parsing:__ When creating my training data, I xml tagged the text with <positive>, <negative> and <neutral> tags. This method helps me parse that to a python list.
 
 * __SVM_Methods:__ The methods I use to analyze SVM training results from K-folds cross validation to weight analysis.
 
