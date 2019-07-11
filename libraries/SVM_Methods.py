@@ -35,7 +35,7 @@ def SVM_Kfolds(x, y, k, kernel='linear', C=1.0, gamma=0.001):
         y_pred_list.append(y_preds)
         true_ys_list.append(test_y)
     results = F_score_Kfolds(true_ys_list, y_pred_list)
-    return results
+    return clf, results
 
 def SVM_weights_untrained(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
     if type(x) == type([]):
