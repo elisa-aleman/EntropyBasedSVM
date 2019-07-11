@@ -18,7 +18,7 @@ keyword_list = ['brown','red','apple','smell','green','juicy', 'tasty','dry','sw
 
 def SVM_KFolds_sentences(sentences, k, keyword_list, kernel='linear', C=1.0, gamma=0.001):
     x, y = Vectorize_Bag_of_Words(sentences, keyword_list)
-    results = SVM_Kfolds(x, y, k, kernel=kernel, C=C, gamma=gamma)
+    clf, results = SVM_Kfolds(x, y, k, kernel=kernel, C=C, gamma=gamma)
     return results
 
 
