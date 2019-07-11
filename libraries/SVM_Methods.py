@@ -50,8 +50,7 @@ def SVM_weights_untrained(x, y, feature_names, kernel = 'linear', C = 1.0, gamma
 
 def SVM_weights_trained(clf,keyword_list):
     weights = clf.coef_.tolist()[0]
-    feature_names = Feature_Names(keyword_list)
-    influences = list(zip(feature_names, weights))
+    influences = list(zip(keyword_list, weights))
     return influences
 
 if __name__ == "__main__":
