@@ -37,17 +37,6 @@ def SVM_Kfolds(x, y, k, kernel='linear', C=1.0, gamma=0.001):
     results = F_score_Kfolds(true_ys_list, y_pred_list)
     return results
 
-def SVM_weights(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
-    if type(x) == type([]):
-        x = numpy.array(x)
-    if type(y) == type([]):
-        y = numpy.array(y)
-    clf = svm.SVC(kernel = kernel, C = C, gamma = gamma)
-    clf.fit(x,y)
-    weights = clf.coef_.tolist()[0]
-    influences = zip(feature_names, weights)
-    return influences
-
 def SVM_weights_untrained(x, y, feature_names, kernel = 'linear', C = 1.0, gamma = 0.001):
     if type(x) == type([]):
         x = numpy.array(x)
