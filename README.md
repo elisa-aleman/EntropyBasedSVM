@@ -24,3 +24,5 @@ I use entropy in positive and negative emotional classification via SVM in many 
 * __ProjectPaths:__ Paths to folders inside the project, such as "data", "logs", etc. for organization.
 
 * __UsefulMethods:__ A few methods I use constantly
+
+* __Best_SVM_selection:__ I use this constantly to compare different SVM parameters and choose the best, so I made it more accessible to import
