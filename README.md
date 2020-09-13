@@ -19,8 +19,8 @@ I use entropy in positive and negative emotional classification via SVM in many 
 
 * __Model_metrics:__ I use scikit-learn to write my own K-folds method that returns F1, Accuracy, Precision and Recall. Included methods usually only return Accuracy or F1.
 
+* __Kaomoji:__ A library to detect kaomoji in text and convert them into numbered tags before applying segmentation by parsers. (in languages without spaces like Chinese) 
+
 * __ProjectPaths:__ Paths to folders inside the project, such as "data", "logs", etc. for organization.
 
 * __UsefulMethods:__ A few methods I use constantly
-
-
