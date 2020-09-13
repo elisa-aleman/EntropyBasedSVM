@@ -3,13 +3,14 @@
 import numpy
 import scipy.stats
 import scipy.special
-from Corpus_preprocessing import general_dictionary
 
 # For a particular word in either category (positive or negative, etc.)
 # The following methods should be used in a list of documents of ONLY positive or ONLY negative documents
 
-# Format is list of documents
 def getNs(word, documents):
+    '''
+    Format is list of documents
+    '''
     Ns = []
     for sentence in documents:
         N = sentence.count(word)
@@ -72,32 +73,24 @@ def max_entropy(corpus):
     Hmax = numpy.log2(n)
     return Hmax
 
-# pos or neg documents --> list of strings ['sentence is sentence', 'sentence 2']
-# pos_entropies = [pe/max_entropy(positive_documents) for pe in entropy_list(general_dict, positive_documents)]
-# pos_entropies = [ne/max_entropy(negative_documents) for ne in entropy_list(general_dict, negative_documents)]
 def make_pos_neg_keywords_alpha(alpha, pos_entropies, neg_entropies, general_dict):
-    pos_dict = []
-    neg_dict = []
+    '''
+    pos or neg documents --> list of strings ['sentence is sentence', 'sentence 2']
+    pos_entropies = [pe/max_entropy(positive_documents) for pe in entropy_list(general_dict, positive_documents)]
+    pos_entropies = [ne/max_entropy(negative_documents) for ne in entropy_list(general_dict, negative_documents)]
+    '''
+    pos_keys = []
+    neg_keys = []
     maxnum = len(pos_entropies)
     for i in range(maxnum):
         word = general_dict[i]
         Hpj = pos_entropies[i]
         Hnj = neg_entropies[i]
         if (Hpj>(alpha*Hnj)):
-            pos_dict.append(word)
+            pos_keys.append(word)
         elif (Hnj>(alpha*Hpj)):
-            neg_dict.append(word)
-    return pos_dict, neg_dict
-
-# User should use:
-# general_dictionary(corpus)
-# # Input: corpus --> list of space separated documents of ALL categories
-# # corpus --> list of strings ['sentence is sentence', 'sentence 2']
-
-# entropy_list(general_dict, documents)
-# SumN_list(general_dict, documents)
-# max_entropy(corpus)
-# make_pos_neg_keywords_alpha(alpha, pos_entropies, neg_entropies, general_dict)
+            neg_keys.append(word)
+    return pos_keys, neg_keys
 
 if __name__ == '__main__':
     pass
