@@ -1,9 +1,13 @@
 #-*- coding: utf-8 -*-
 
 from libraries.Entropy import *
+from libraries.Corpus_preprocessing import general_dictionary
 
 # User should use:
 # general_dictionary(corpus)
+# # Input: corpus --> list of space separated documents of ALL categories
+# # corpus --> list of strings ['sentence is sentence', 'sentence 2']
+
 # entropy_list(general_dict, documents)
 # max_entropy(corpus)
 # make_pos_neg_keywords_alpha(alpha, pos_entropies, neg_entropies, general_dict)
