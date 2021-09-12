@@ -1,0 +1,15 @@
+[submodule "Kaomoji_parsing"]
+	path = Kaomoji_parsing
+	url = https://github.com/elisa-aleman/Kaomoji_parsing
+[submodule "useful_methods"]
+	path = useful_methods
+	url = https://github.com/elisa-aleman/useful_methods
+[submodule "MachineLearning"]
+	path = MachineLearning
+	url = https://github.com/elisa-aleman/MachineLearning
+[submodule "StanfordCoreNLP_Chinese"]
+	path = StanfordCoreNLP_Chinese
+	url = https://github.com/elisa-aleman/StanfordCoreNLP_Chinese
+[submodule "SeleniumBrowser_proxy"]
+	path = SeleniumBrowser_proxy
+	url = https://github.com/elisa-aleman/SeleniumBrowser_proxy
